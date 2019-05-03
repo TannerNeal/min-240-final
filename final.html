@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <title>StuddyBuddy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        @import url(https: //fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+
+        html, body {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .signUp {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #6D6968;
+            background-size: cover;
+            z-index: 1;
+        }
+    
+        .box {
+            box-sizing: border-box;
+            width: 440px;
+            margin: 40px auto;
+            border-radius: 2px;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+            padding: 15px 35px;
+            margin-top: 100px
+        }
+
+        .back {
+            text-decoration: none;
+            line-height: 40px;
+        }
+
+        .back-arrow {
+            color: white;
+        }
+
+
+        .logo {
+            position: relative;
+            width:125px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        img {
+            width: 125px;
+            
+        }
+
+
+        .square {
+            position: absolute;
+            left: 9px;
+            background: $background;
+            width: 40px;
+            height: 40px;
+            border: 3px solid $blue;
+            border-radius: 8px;
+            transform: rotateX(55deg) rotateZ(45deg);
+                box-shadow: 3px 3px 0px 2px white;
+            -webkit-backface-visibility: hidden;
+
+            &:nth-of-type(1) {
+            background: $blue;
+            top: 0;
+            z-index: 99;
+            }
+
+            &:nth-of-type(2) {
+            top: 12px;
+            z-index: 98;
+            }
+
+            &:nth-of-type(3) {
+            top: 24px;
+            z-index: 97;
+            }
+        }
+
+
+        .title {
+            font-weight: 400;
+            color: white;
+            text-align: center;
+        }
+
+        input {
+            outline: 0;
+            border: 1px solid #CCC;
+            box-sizing: border-box;
+            padding: 8px;
+            color: #222;
+            border-radius: 4px;
+            width: 100%;
+            margin: 5px 0;
+            font-weight: 600;
+
+            &::-webkit-input-placeholder {
+            color: #AAA;
+            font-weight: 400;
+            }
+        }
+
+        #first {
+            width: calc(50% - 5px);
+            float: left;
+            &:first-of-type {
+            margin-right: 10px;
+            }
+        }
+
+        #last {
+            width: calc(50% - 5px);
+            float: right;
+        }
+
+
+        label.description {
+            float: left;
+            margin: 3px 0;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5AA4EC;
+            font-weight: 600;
+        }
+
+        #button {
+            background: skyblue;
+            line-height: 40px;
+            color: white;
+            border-radius: 20px;
+            font-weight: 300;
+            font-size: 20px;
+            padding: 2px;
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+
+        #button:hover {
+            background-color: dodgerblue;
+            cursor: pointer
+        }
+
+        #leftColumn {
+            position: absolute;
+            width: 300px;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            background-color: #464646;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+            z-index:
+        }
+        
+        #profileSection {
+            margin-top: 10px;
+            height: 70px;
+            width: 275px;
+            margin-left: 8px;
+        }
+        
+        #profPic {
+            width: 60px;
+            border-radius: 50%;
+            margin-left: 5px;
+            position: absolute;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+        }
+        
+        #settings {
+            position: absolute;
+            width: 50px;
+            left: 250px;
+            cursor: pointer;
+        }
+        
+        #name {
+            color: white;
+            font-size: 20px;
+            margin-left: 75px;
+            position: absolute;
+
+        }
+        
+        #search1 {
+            margin-top: 70px;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #groups {
+            padding: 10px;
+            margin-top: 20px;
+            line-height: 3;
+            color: white;
+        }
+        
+        #group1:hover {
+            background-color: darkgray;
+            cursor: pointer;
+        }
+        
+        #group1Pic {
+            float: left;
+            width: 50px;
+            border-radius: 50%;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #group1Name {
+            padding-left: 60px;
+        }
+        
+        #group2:hover {
+            background-color: darkgray;
+            cursor: pointer;
+        }
+        #group2Pic {
+            float: left;
+            width: 50px;
+            border-radius: 50%;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #group2Name {
+            padding-left: 60px;
+        }
+        
+        #group3:hover {
+            background-color: darkgray;
+            cursor: pointer;
+        }
+        
+        #group3Pic {
+            float: left;
+            width: 50px;
+            border-radius: 50%;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #group3Name {
+            padding-left: 60px;
+        }
+        
+        #logo2 {
+            position: absolute;
+            width: 200px;
+            bottom: 1%;
+        }
+        
+        #topBar {
+            width: 100%;
+            height: 80px;
+            background-color: #464646;
+            margin-top: -16px;
+            margin-left: 8px;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+            
+        }
+        
+        #mainSect {
+            background-color: #282828;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            position: absolute;
+        }
+        
+        #groupHead {
+            position: absolute;
+            color: white;
+            margin-left: 300px;
+            margin-top: 15px;
+            font-size: 40px
+        }
+        
+        #search2 {
+            position: absolute;
+            width: 13vw;
+            right: 1%;
+            top: 10px;
+            display: inline-block;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+        }
+        
+        #addPeople {
+            position:absolute;
+            width: 50px;
+            right: 15%;
+            top: 6px;
+            cursor: pointer;
+        }
+        
+        #phone {
+            position: absolute;
+            width: 40px;
+            right: 18%;
+            top: 10px;
+            cursor: pointer;
+        }
+        
+        #video {
+            position: absolute;
+            width: 70px;
+            right: 20.5%;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+        
+        
+        #messages {
+            position: absolute;
+            color: white;
+            font-size: 100px;
+            padding: 400px;
+            padding-left: 700px;
+        }
+        
+        #chatBox {
+            position: absolute;
+            width: 70vw;
+            right: 12%;
+            bottom: 90px;
+            height: 50px;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+        }
+        
+        #sendMsg {
+            position: absolute;
+            width: 50px;
+            right: 8%;
+            bottom: 95px;
+            cursor: pointer;
+        }
+        
+        
+        #quizBTN {
+            position: absolute;
+            width: 60px;
+            right: 4%;
+            bottom: 90px;
+            cursor: pointer;
+        }
+        
+        #videoCall {
+            position: absolute;
+            width: 100%;
+            height: 310px;
+            background-color: #1C1C1C;
+            display: none;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #camera1 {
+            position: absolute;
+            width: 400px;
+            left: 400px;
+            top: 40px;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.6);
+        }
+        
+        #camera2 {
+            position: absolute;
+            width: 400px;
+            left: 850px;
+            top: 40px;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.6);
+        }
+        
+        #camera3 {
+            position: absolute;
+            width: 400px;
+            left: 1300px;
+            top: 40px;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.6);
+        }
+        
+        #quizSection {
+            position: absolute;
+            width: 100%;
+            height: 640px;
+            background-color: #282828;
+            bottom: 0px;
+            z-index: -2;
+            display: none;
+        }
+        #card1 {
+            position: absolute;
+            width: 500px;
+            height: 30vh;
+            background-color: white;
+            left: 40%;
+            top: 13%;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            font-size: 70px;
+            font-weight: 500;
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        #card2 {
+            position: absolute;
+            width: 500px;
+            height: 27vh;
+            background-color: white;
+            left: 50%;
+            top: 15%;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            font-size: 70px;
+            font-weight: 500;
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+            z-index:-2;
+        }
+        
+        #card3 {
+            position: absolute;
+            width: 500px;
+            height: 27vh;
+            background-color: white;
+            left: 30%;
+            top: 15%;
+            box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            font-size: 70px;
+            font-weight: 500;
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+            z-index:-2;
+        }
+        
+        #leftArrow {
+            position: absolute;
+            width: 50px;
+            left: 25%;
+            top: 30%;
+            cursor: pointer;
+            
+        }
+        
+        #rightArrow {
+            position: absolute;
+            width: 50px;
+            left: 79%;
+            top: 30%;
+            cursor: pointer;
+            
+        }
+        
+@media (min-width: 900px) {
+    .#messages {
+        padding: 200px
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="signUp">
+        <div class="box">
+            <a class="back" href="landingpage2.html"><span class="back-arrow">Back</span></a>
+            <div class="brand">
+                <div class="logo">
+                    <img src="studybuddylogo.png">
+                </div>
+                <h2 class="title">Sign up now</h2>
+            </div>
+            <div class="form">
+                <form>
+                    <div class="row">
+                        <input id="first" type="text" name="firstname" placeholder="First name">
+                        <input id="last" type="text" name="lastname" placeholder="Last name">
+                    </div>
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password"><br>
+                    <p id="button">Sign up</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="homePage">
+        <div id="leftColumn">
+            <div id="profileSection">
+                <img id="profPic" src="thumb__ser.png">
+                <img id="settings" src="gear.png">
+                <p id="name">Tanner Neal</p>
+                <input id="search1" type="text" name="Search" placeholder="Search">
+                <a href="landingpage2.html"><img id="logo2" src="studybuddylogo.png"></a>
+            </div>
+            <div id="groups">
+                <div id="group1">
+                    <img id="group1Pic" src="thumb__ser.png">
+                    <p id="group1Name">Group 1</p>
+                </div>
+                <div id="group2">
+                    <img id="group2Pic" src="thumb__ser.png">
+                    <p id="group2Name">Group 2</p>
+                </div>
+                <div id="group3">
+                    <img id="group3Pic" src="thumb__ser.png">
+                    <p id="group3Name">Group 3</p>
+                </div>
+            </div>
+        </div>
+        <div id="topBar">
+            <input id="search2" type="text" name="Search2" placeholder="Search">
+                <img id="addPeople" src="person_add_black_2048x2048.png">
+                <img id="phone" src="56382-200.png">
+                <img id="video" src="camcorder-145-528038.png">
+            <div id="group1Head">
+                <p id="groupHead">Group 1</p>
+            </div>
+            <div id="group2Head">
+                <p id="groupHead">Group 2</p>
+            </div>
+            <div id="group3Head">
+                <p id="groupHead">Group 3</p>
+            </div>
+        </div>
+        <div id="mainSect">
+            <p id="messages">Messages</p>
+            <input id="chatBox" type="text" name="chatBox" placeholder="Message">
+            <img id="sendMsg" src="16909.png">
+            <img id="quizBTN" src="25829f6b8d6ca72aee817a8448ab7024-flat-open-book-icon-by-vexels.png">
+            <div id="videoCall">
+                <img id="camera1" src="black-woman-college-student-studying-footage-022541435_prevstill.jpeg">
+                <img id="camera2" src="coverphoto_3.jpg">
+                <img id="camera3" src="beautiful-woman-focused-student-studying-footage-070128662_prevstill.jpeg">
+            </div>
+            <div id="quizSection">
+                <div id="card1">FlashCard</div>
+                <div id="card2">FlashCard</div>
+                <div id="card3">FlashCard</div>
+                <img id="leftArrow" src="leftArrow.png">
+                <img id="rightArrow" src="rightArrow.png">
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#button").click(function() {
+                $(".signUp").fadeOut(1000)
+            });
+            $("#button").click(function() {
+                $(".homePage").show()
+            });
+        });
+
+        $(document).ready(function() {
+            $("#group2Head").hide();
+        });
+
+        $(document).ready(function() {
+            $("#group3Head").hide();
+        });
+
+        $(document).ready(function() {
+            $("#group1").click(function() {
+                $("#group1Head").show()
+                $("#group2Head").hide()
+                $("#group3Head").hide()
+            });
+        });
+
+        $(document).ready(function() {
+            $("#group2").click(function() {
+                $("#group2Head").show()
+                $("#group1Head").hide()
+                $("#group3Head").hide()
+            });
+        });
+
+        $(document).ready(function() {
+            $("#group3").click(function() {
+                $("#group3Head").show()
+                $("#group2Head").hide()
+                $("#group1Head").hide()
+            });
+        });
+        
+        $(document).ready(function() {
+            $("#video").click(function() {
+                $("#videoCall").slideToggle(1000);
+            });
+        });
+        
+        $(document).ready(function() {
+            $("#quizBTN").click(function() {
+                $("#quizSection").slideToggle(1000);
+                $("#messages").fadeToggle(1000)
+            });
+        });
+        
+        
+    </script>
+</body>
+
+</html>
